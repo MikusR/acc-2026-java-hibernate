@@ -4,6 +4,7 @@ Starter project for Data Architecture practical task: Build a REST API for manag
 
 ## Stretch goals done
 - Searching by partial title
+- Validation
 
 ## Task
 Complete all of the 'TODO' portions of the code. The finished application should compile and all of the controller endpoints should be functional.
