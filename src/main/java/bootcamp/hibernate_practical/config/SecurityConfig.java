@@ -28,7 +28,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/books/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/books/borrow/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/books/return/**").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/books").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/books").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/books/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/books/**").hasRole("ADMIN")

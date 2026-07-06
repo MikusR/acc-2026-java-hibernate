@@ -12,8 +12,8 @@ Spring Boot REST API secured with Spring Security.
 
 | Username | Password | Role  |
 |----------|----------|-------|
-| user     | user     | USER  |
-| admin    | admin    | ADMIN |
+| user     | user123  | USER  |
+| admin    | admin123 | ADMIN |
 
 ## Endpoints
 
