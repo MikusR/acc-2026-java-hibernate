@@ -86,6 +86,14 @@ public class BookService {
         return bookRepository.findByTitleContainingIgnoreCase(title).stream().map(this::mapToResponse).toList();
     }
 
+    public long getBookCount() {
+        return bookRepository.count();
+    }
+
+    public long getAvailableBookCount() {
+        return bookRepository.countByAvailableTrue();
+    }
+
     private BookResponse mapToResponse(Book book) {
         return new BookResponse(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getPublicationYear(), book.isAvailable(), book.isBorrowedStatus());
     }

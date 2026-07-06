@@ -7,6 +7,7 @@ Starter project for Data Architecture practical task: Build a REST API for manag
 - Request validation
 - Custom exception handling
 - Add 'borrow' and 'return' endpoints along with the new 'borrowedStatus' field to the Book entity
+- Add an endpoint to return the total number of books in the library
 
 ## Run with
 

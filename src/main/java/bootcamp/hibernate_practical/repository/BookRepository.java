@@ -15,4 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByPublicationYearGreaterThan(int publicationYear);
 
     List<Book> findByTitleContainingIgnoreCase(String title);
+
+    long countByAvailableTrue();
 }

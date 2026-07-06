@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/books")
@@ -26,6 +27,12 @@ public class BookController {
     @GetMapping
     public List<BookResponse> getAllBooks() {
         return bookService.getAllBooks();
+    }
+
+    @GetMapping("/stats")
+    public Map<String, Long> getBookCount() {
+        return Map.of("Books in Library", bookService.getBookCount(),
+                "Available for Borrowing", bookService.getAvailableBookCount());
     }
 
     @GetMapping("/{id}")
