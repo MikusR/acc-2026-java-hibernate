@@ -18,13 +18,7 @@ public class BookService {
     }
 
     public BookResponse createBook(CreateBookRequest request) {
-        Book book = new Book(
-                request.getTitle(),
-                request.getAuthor(),
-                request.getGenre(),
-                request.getPublicationYear(),
-                true
-        );
+        Book book = new Book(request.getTitle(), request.getAuthor(), request.getGenre(), request.getPublicationYear(), true);
         Book savedBook = bookRepository.save(book);
         return mapToResponse(savedBook);
     }
@@ -63,13 +57,18 @@ public class BookService {
         return null;
     }
 
-    public List<BookResponse> findAvailableBooks(){
+    public List<BookResponse> findAvailableBooks() {
         // TODO
         return null;
     }
 
     private BookResponse mapToResponse(Book book) {
-        // TODO: map Book to BookResponse
-        return null;
+        return new BookResponse(
+                book.getId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getGenre(),
+                book.getPublicationYear(),
+                book.isAvailable());
     }
 }
