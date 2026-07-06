@@ -5,16 +5,16 @@ info:
 
 http:
   method: PUT
-  url: localhost:8080/api/books/1
+  url: localhost:8080/api/books/2
   body:
     type: json
     data: |-
       {
-      "title": "Updated Title",
-      "author": "Updated Author",
-      "genre": "Updated Genre",
-      "publicationYear": 2005,
-      "available": false
+      "title": "Updated Title2",
+      "author": "Updated Author2",
+      "genre": "ds",
+      "publicationYear": 4005,
+      "available"=true
       }
   auth: inherit
 
