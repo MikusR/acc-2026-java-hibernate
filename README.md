@@ -8,6 +8,11 @@ Starter project for Data Architecture practical task: Build a REST API for manag
 - Custom exception handling
 - Add 'borrow' and 'return' endpoints along with the new 'borrowedStatus' field to the Book entity
 
+## Run with
+
+```bash
+./mvnw spring-boot:run
+```
 ## Task
 Complete all of the 'TODO' portions of the code. The finished application should compile and all of the controller endpoints should be functional.
 
