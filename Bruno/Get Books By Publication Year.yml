@@ -1,0 +1,17 @@
+info:
+  name: Get Books By Publication Year
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: localhost:8080/api/books/year/2000
+  body:
+    type: none
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
