@@ -4,6 +4,7 @@ import bootcamp.hibernate_practical.dto.BookResponse;
 import bootcamp.hibernate_practical.dto.CreateBookRequest;
 import bootcamp.hibernate_practical.dto.UpdateBookRequest;
 import bootcamp.hibernate_practical.entity.Book;
+import bootcamp.hibernate_practical.exception.BookNotAvailableException;
 import bootcamp.hibernate_practical.exception.BookNotFoundException;
 import bootcamp.hibernate_practical.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,27 @@ public class BookService {
         return mapToResponse(savedBook);
     }
 
+    public BookResponse borrowBook(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
+        if (!book.isAvailable()) {
+            throw new BookNotAvailableException("Book is not available for borrowing");
+        }
+        book.setAvailable(false);
+        book.setBorrowedStatus(true);
+        Book savedBook = bookRepository.save(book);
+        return mapToResponse(savedBook);
+    }
+
+    public BookResponse returnBook(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
+        if (!book.isBorrowedStatus()) {
+            throw new BookNotAvailableException("Book is not currently borrowed");
+        }
+        book.setAvailable(true);
+        book.setBorrowedStatus(false);
+        return mapToResponse(bookRepository.save(book));
+    }
+
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
@@ -65,6 +87,6 @@ public class BookService {
     }
 
     private BookResponse mapToResponse(Book book) {
-        return new BookResponse(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getPublicationYear(), book.isAvailable());
+        return new BookResponse(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getPublicationYear(), book.isAvailable(), book.isBorrowedStatus());
     }
 }

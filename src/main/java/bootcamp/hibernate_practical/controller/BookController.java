@@ -63,4 +63,14 @@ public class BookController {
         return bookService.findAvailableBooks();
     }
 
+    @PostMapping("/borrow/{id}")
+    public BookResponse borrowBook(@PathVariable Long id) {
+        return bookService.borrowBook(id);
+    }
+
+    @PostMapping("/return/{id}")
+    public BookResponse returnBook(@PathVariable Long id) {
+        return bookService.returnBook(id);
+    }
+
 }
