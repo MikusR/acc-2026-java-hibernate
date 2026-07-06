@@ -24,51 +24,46 @@ public class BookService {
     }
 
     public List<BookResponse> getAllBooks() {
-        // TODO:
-        // Fetch all books from the repository
-        // Convert each Book entity into BookResponse DTO
-        // Return the list
-        return null;
+        List<Book> books = bookRepository.findAll();
+        return books.stream().map(this::mapToResponse).toList();
     }
 
     public BookResponse getBookById(Long id) {
-        // TODO
-        // Find the book by its ID
-        // Throw RuntimeException if not found
-        // Convert the entity to BookResponse
-        return null;
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        return mapToResponse(book);
     }
 
     public BookResponse updateBook(Long id, UpdateBookRequest request) {
-        // TODO
-        // Find existing book
-        // Update its fields
-        // Save the updated entity
-        // Convert to BookResponse
-        return null;
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        book.setTitle(request.getTitle());
+        book.setAuthor(request.getAuthor());
+        book.setGenre(request.getGenre());
+        book.setPublicationYear(request.getPublicationYear());
+        Book savedBook = bookRepository.save(book);
+        return mapToResponse(savedBook);
     }
 
     public void deleteBook(Long id) {
-        // TODO
+        bookRepository.deleteById(id);
     }
 
     public List<BookResponse> findByAuthor(String author) {
-        // TODO
-        return null;
+        return bookRepository.findByAuthor(author).stream().map(this::mapToResponse).toList();
+    }
+
+    public List<BookResponse> findByPublicationYearGreaterThan(int publicationYear) {
+        return bookRepository.findByPublicationYearGreaterThan(publicationYear).stream().map(this::mapToResponse).toList();
     }
 
     public List<BookResponse> findAvailableBooks() {
-        // TODO
-        return null;
+        return bookRepository.findByAvailableTrue().stream().map(this::mapToResponse).toList();
+    }
+
+    public List<BookResponse> findByTitleContainingIgnoreCase(String title) {
+        return bookRepository.findByTitleContainingIgnoreCase(title).stream().map(this::mapToResponse).toList();
     }
 
     private BookResponse mapToResponse(Book book) {
-        return new BookResponse(
-                book.getId(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getGenre(),
-                book.getPublicationYear(),
-                book.isAvailable());
+        return new BookResponse(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getPublicationYear(), book.isAvailable());
     }
 }

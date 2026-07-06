@@ -2,6 +2,9 @@
 
 Starter project for Data Architecture practical task: Build a REST API for managing books in a library using Spring Boot, Spring Data JPA and an H2 database.
 
+## Stretch goals done
+- Searching by partial title
+
 ## Task
 Complete all of the 'TODO' portions of the code. The finished application should compile and all of the controller endpoints should be functional.
 
