@@ -1,33 +1,27 @@
-# Practical Task: Library Book Tracker API
+# M9-Spring Security Task based on my M8 Task
 
-Starter project for Data Architecture practical task: Build a REST API for managing books in a library using Spring Boot, Spring Data JPA and an H2 database.
+Spring Boot REST API secured with Spring Security.
 
-## Stretch goals done
-- Searching by partial title
-- Request validation
-- Custom exception handling
-- Add 'borrow' and 'return' endpoints along with the new 'borrowedStatus' field to the Book entity
-- Add an endpoint to return the total number of books in the library
+## Running the application
 
-## Run with
-
-```bash
+```
 ./mvnw spring-boot:run
 ```
-## Task
-Complete all of the 'TODO' portions of the code. The finished application should compile and all of the controller endpoints should be functional.
 
-## Behavioural Requirements
-- Books can be created
-- All books can be retrieved
-- A single book can be retrieved by ID
-- Books can be deleted
-- Books can be filtered and searched by their fields.
-- Controller delegates to Service, which delegates to Repository
-- DTOs are used for requests and responses
+## Users
 
-## Stretch goals
-- Request validation
-- Custom exception handling
-- Searching by partial title
-- Add 'borrow' and 'return' endpoints along with the new 'borrowedStatus' field to the Book entity
+| Username | Password | Role  |
+|----------|----------|-------|
+| user     | user123  | USER  |
+| admin    | admin123 | ADMIN |
+
+## Endpoints
+
+| Method | Path              | Access                |
+|--------|-------------------|-----------------------|
+| GET    | /api/books/**     | Any authenticated user|
+| POST   | /api/books/borrow | Any authenticated user|
+| POST   | /api/books/return | Any authenticated user|
+| POST   | /api/books        | ADMIN only            |
+| PUT    | /api/books/**     | ADMIN only            |
+| DELETE | /api/books/**     | ADMIN only            |
